@@ -6,7 +6,6 @@ const connectDB = require('./config.js')
 connectDB();
 
 const Contact = require('./models/Contact')
-
 const app = express();
 app.use(cors())
 app.use(bodyParser.json())
@@ -71,7 +70,7 @@ app.post('/identify', async (req, res) => {
         linkedId: primaryContact._id,
         linkPrecedence: 'secondary'
       });
-      
+
       await newSecondary.save();
       matchingContacts.push(newSecondary);
     }
