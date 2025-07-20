@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18'   // You can change this to any version you need (e.g. node:20)
+            args '-v $HOME/.npm:/root/.npm' // Optional: cache npm modules
+        }
+    }
 
     stages {
         stage('Clone') {
@@ -16,7 +21,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'npm test'  // or 'npm run test' if defined in package.json
+                sh 'npm test'
             }
         }
 
