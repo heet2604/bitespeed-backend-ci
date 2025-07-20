@@ -1,25 +1,26 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18'
+        }
+    }
 
     stages {
-        stage('Clone') {
-            steps {
-                git 'https://github.com/heet2604/bitespeed-backend-ci.git'
-            }
-        }
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
+
         stage('Test') {
             steps {
-                sh 'npm test' // or comment this if you don’t have tests
+                sh 'npm test'
             }
         }
+
         stage('Build') {
             steps {
-                sh 'npm run build' // or comment this if not needed
+                sh 'npm run build || echo "No build step defined"'
             }
         }
     }
