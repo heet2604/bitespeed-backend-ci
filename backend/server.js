@@ -100,6 +100,7 @@ app.post('/identify', async (req, res) => {
 });
 
 module.exports = app;
+
 if (require.main === module) {
   const port = 5000;
   app.listen(port, () => {
