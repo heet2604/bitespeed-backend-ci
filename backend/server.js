@@ -71,6 +71,7 @@ app.post('/identify', async (req, res) => {
         linkedId: primaryContact._id,
         linkPrecedence: 'secondary'
       });
+      
       await newSecondary.save();
       matchingContacts.push(newSecondary);
     }
