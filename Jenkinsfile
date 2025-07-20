@@ -1,45 +1,26 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_ENV = 'development'
-    }
-
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/heet2604/bitespeed-backend-ci'
+                git 'https://github.com/heet2604/bitespeed-backend-ci.git'
             }
         }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
-
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                sh 'npm test || echo "Tests skipped or failed"'
+                sh 'npm test' // or comment this if you don’t have tests
             }
         }
-
-        stage('Build Docker') {
+        stage('Build') {
             steps {
-                sh 'docker-compose build'
+                sh 'npm run build' // or comment this if not needed
             }
-        }
-
-        stage('Run App') {
-            steps {
-                sh 'docker-compose up -d'
-            }
-        }
-    }
-
-    post {
-        always {
-            echo 'Pipeline finished'
         }
     }
 }
