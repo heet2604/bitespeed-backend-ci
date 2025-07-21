@@ -10,7 +10,6 @@ const app = express();
 app.use(cors())
 app.use(bodyParser.json())
 
-
 app.post('/identify', async (req, res) => {
   try {
     const { email, phoneNumber } = req.body;
