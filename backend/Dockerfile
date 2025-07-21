@@ -1,20 +1,13 @@
-# Use Node.js LTS version
+# Dockerfile at root
 FROM node:18
 
-# Create app directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
+COPY backend/package*.json ./
 RUN npm install
 
-# Copy source code
-COPY . .
+COPY backend/. .
 
-# Expose port (change if your app uses another)
 EXPOSE 3001
+CMD ["npm", "start"]
 
-# Start the app
-CMD ["node", "server.js"]
