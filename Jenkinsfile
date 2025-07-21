@@ -10,10 +10,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir('backend') {
-                    script {
-                        docker.build('bitespeed-app', '.')
-                    }
+                script {
+                    docker.build('bitespeed-app', 'backend')
                 }
             }
         }
